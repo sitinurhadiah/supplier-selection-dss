@@ -1,20 +1,76 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 📊 Supplier Selection Decision Support System (DSS)
 
-# Run and deploy your AI Studio app
+<p align="center">
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Lucide_Icons-F97316?style=for-the-badge&logo=lucide&logoColor=white" alt="Lucide Icons" />
+</p>
 
-This contains everything you need to run your app locally.
+> **Academic Group Project** for the **Business Intelligence** course at Universitas Ma Chung.
 
-View your app in AI Studio: https://ai.studio/apps/3b11d204-1112-44bf-a6fb-63d4e210cef2
+A web-based Decision Support System (DSS) dashboard engineered to evaluate, rank, and select optimal business suppliers. This application implements a hybrid decision-making approach combining the **Analytic Hierarchy Process (AHP)** for criteria weighting and the **Technique for Order of Preference by Similarity to Ideal Solution (TOPSIS)** for alternative ranking[cite: 2].
 
-## Run Locally
+---
 
-**Prerequisites:**  Node.js
+## 👥 Authors & Project Team
 
+* **Monica Clarista Gracianna** (NIM: 322410014)[cite: 2]
+* **Siti Nur Hadiah** (NIM: 322410015)[cite: 2]
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+---
+
+## 📌 Executive Summary
+
+Selecting the right supplier is a critical strategic decision in supply chain management. This project provides an intuitive, data-driven dashboard that automates multi-criteria evaluation. By synthesizing qualitative expert judgment via AHP with quantitative geometric distance scoring via TOPSIS, the system reduces bias and streamlines supplier selection workflows.
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+| Layer | Technology | Role & Purpose |
+| :--- | :--- | :--- |
+| **Frontend Framework** | **React 18** | Component-based UI architecture for interactive view switching |
+| **Type Safety** | **TypeScript** | Strict typing for criteria vectors, pairwise matrices, and ranking schemas[cite: 2] |
+| **Build Tooling** | **Vite** | Fast local development server and optimized bundle compilation[cite: 2] |
+| **Styling & UI** | **Tailwind CSS** | Responsive dashboard layout and utility-first styling |
+| **Icons** | **Lucide React** | Clean visual indicators for navigation and matrix controls |
+| **Core Algorithms** | **TypeScript (Native)** | Custom implementation of matrix normalization, consistency ratio (CR) calculation, ideal solutions ($A^+$ / $A^-$), and relative closeness scores ($C_i^*$)[cite: 2] |
+
+---
+
+## ⚡ Core Features & Decision Modules
+
+- 📋 **Problem Context (`PermasalahanView`)**: Detailed overview of decision criteria and business evaluation goals[cite: 2].
+- 🗂️ **Dataset Management (`DatasetView`)**: Display and configuration of supplier alternatives and raw performance metrics[cite: 2].
+- ⚖️ **Criteria & Weights (`KriteriaBobotView`)**: Configuration of decision parameters and weight distributions[cite: 2].
+- 📐 **AHP Calculation Engine (`AHPView`)**: Pairwise comparison matrices to derive criteria weights and verify Consistency Ratios ($CR < 0.1$)[cite: 2].
+- 📊 **TOPSIS Matrix Processing (`TOPSISView`)**: Matrix normalization, weighted normalized matrix computation, and positive/negative ideal solution determination[cite: 2].
+- 🏆 **Ranking & Recommendations (`RankingView` & `RekomendasiView`)**: Final aggregated supplier rankings with actionable decision insights[cite: 2].
+- 📈 **Summary Dashboard (`DashboardView`)**: High-level visual dashboard summarizing scores and top supplier metrics[cite: 2].
+
+---
+
+## 📂 Project Structure
+
+```text
+.
+├── src/
+│   ├── components/
+│   │   ├── DashboardView.tsx     # Executive overview dashboard
+│   │   ├── DatasetView.tsx       # Supplier alternative dataset management
+│   │   ├── PermasalahanView.tsx  # Problem context & objective specifications
+│   │   ├── KriteriaBobotView.tsx # Decision criteria configuration
+│   │   ├── AHPView.tsx           # AHP pairwise comparison matrix & consistency checks
+│   │   ├── TOPSISView.tsx        # TOPSIS vector normalization & distance scoring
+│   │   ├── RankingView.tsx       # Aggregated supplier ranking results
+│   │   └── RekomendasiView.tsx   # Automated decision recommendations
+│   ├── App.tsx                   # Main layout shell & tab navigation
+│   ├── calculations.ts           # Algorithmic engine for AHP & TOPSIS math
+│   ├── dataset.ts                # Initial mock dataset & criteria definitions
+│   ├── types.ts                  # TypeScript data interfaces & matrix definitions
+│   └── main.tsx                 # React DOM entry point
+├── index.html                    # Root HTML template
+├── vite.config.ts                # Vite build setup
+└── package.json                  # Node dependencies & project scripts
